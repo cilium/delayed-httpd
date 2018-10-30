@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: delayed-httpd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: delayed-httpd
+    spec:
+      containers:
+      - name: delayed-httpd
+        image: docker.io/cilium/delayed-httpd:latest
+        imagePullPolicy: Always
+        env:
+          - name: "DELAY"
+            value: "80"
